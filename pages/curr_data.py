@@ -15,7 +15,7 @@ def predict_today():
   tomorrow = today + timedelta(days=1)
   next_day = pd.date_range(today,tomorrow, 
               freq='10T').strftime("%Y-%m-%dT%H-%M-%S").tolist()
-  
+  print("hello")
   next_day = pd.DataFrame(next_day, columns = ['Datetime'])
   
   
