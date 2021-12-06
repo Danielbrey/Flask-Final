@@ -21,33 +21,40 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
             <script>
 
-                var yValues = [{% for item in values %}
+                var y_actual = [{% for item in actual %}
                 "{{item}}",
                     {% endfor %}];
                 var xValues = [{% for item in times %}
                 "{{item}}",
                     {% endfor %}];
 
+                var y_predicted = [{% for item in predicted %}
+                "{{item}}",
+                    {% endfor %}];
+
                 const ctx = document.getElementById('myChart');
+                
                 const myChart = new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: xValues,
-                        datasets: [{
-                            label: 'Average Demand (kW)',
-                            data: yValues,
-                            backgroundColor: ['rgba(54, 162, 235, 0.2)'], // circle color
-                            borderColor: ['rgba(54, 162, 235, 1)'], // line color
-                            borderWidth: 1
-                        }]
-                    }// ,
-                    // options: {
-                    //     scales: {
-                    //         y: {
-                    //             beginAtZero: true
-                    //         }
-                    //     }
-                    // }
+                        datasets: [
+                            {
+                                label: 'Actual Values',
+                                data: y_actual,
+                                backgroundColor: ['rgba(54, 162, 235, 0.2)'], // circle color
+                                borderColor: ['rgba(54, 162, 235, 1)'], // line color
+                                borderWidth: 1
+                            },
+                            {
+                                label: 'Predicted Values',
+                                data: y_predicted,
+                                backgroundColor: ['rgba(143, 201, 58, 0.2)'], // circle color
+                                borderColor: ['rgba(143, 201, 58, 1)'], // line color
+                                borderWidth: 1
+                            },
+                        ]
+                    }
                 });
             </script>
             <div id="includedContent"></div>
