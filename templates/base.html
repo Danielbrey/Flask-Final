@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<title>Green Midd</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+
+<body class="w3-content" style="max-width:1200px">
+  
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-light-grey w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="button_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>GREEN MIDD</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="/" class="w3-bar-item w3-button">Home</a>
+    <a href="average_demand" class="w3-bar-item w3-button">Past Few Years</a>
+    <a href="campus_current_data" class="w3-bar-item w3-button">Campus Today</a>
+    <!-- Dropdown for buildings -->
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Academic Buildings <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="axinn_current_data" class="w3-bar-item w3-button">Axinn</a>
+      <a href="bihall_current_data" class="w3-bar-item w3-button">Bicentennial Hall</a>
+      <a href="mahaney_arts_center_current_data" class="w3-bar-item w3-button">Mahaney Arts Center</a>
+      <a href="davis_current_data" class="w3-bar-item w3-button">Davis Family Library</a>
+      <a href="munroe_current_data" class="w3-bar-item w3-button">Munroe</a>
+      <a href="75_shannon_street_current_data" class="w3-bar-item w3-button">75 Shannon Street</a>
+    </div>
+    <a onclick="myAccFunc2()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Residential Buildings <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="atwater_a_current_data" class="w3-bar-item w3-button">Atwater A</a>
+      <a href="atwater_b_current_data" class="w3-bar-item w3-button">Atwater B</a>
+      <a href="battell_current_data" class="w3-bar-item w3-button">Battell</a>
+      <a href="laforce_and_ross_dining_current_data" class="w3-bar-item w3-button">LaForce / Ross Dining</a>
+      <a href="ridgeline_current_data" class="w3-bar-item w3-button">Ridgeline</a>
+      <a href="townhouse_center_data" class="w3-bar-item w3-button">Townhouse Center</a>
+      <a href="townhouse_north_current_data" class="w3-bar-item w3-button">Townhouse North</a>
+      <a href="townhouse_south_current_data" class="w3-bar-item w3-button">Townhouse South</a>
+      <a href="voter_current_data" class="w3-bar-item w3-button">Voter</a>
+    </div>
+    <a onclick="myAccFunc3()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Other Buildings <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="porter_current_data" class="w3-bar-item w3-button">Porter Hospital</a>
+      <a href="virtue_field_house_current_data" class="w3-bar-item w3-button">Virtue Field House</a>
+      <a href="atwater_dining_current_data" class="w3-bar-item w3-button">Atwater Dining</a>
+      <a href="natatorium_current_data" class="w3-bar-item w3-button">Natatorium</a>
+      <a href="kenyon_current_data" class="w3-bar-item w3-button">Kenyon</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Page Content -->
+<div class="w3-main" style="margin-left:250px">
+
+<div class="w3-display-container w3-container">
+  {% block content %} 
+  {% endblock %}
+</div>
+
+<!-- -->
+<script>
+// Accordion 
+function myAccFunc() {
+  var x = document.getElementById("demoAcc");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function myAccFunc2() {
+  var x = document.getElementById("demoAcc2");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function myAccFunc3() {
+  var x = document.getElementById("demoAcc3");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+
+// Open and close sidebar
+function button_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function button_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+</script>
+
+</body>
+</html>

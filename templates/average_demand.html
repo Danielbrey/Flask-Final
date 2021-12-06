@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div>
+        <head>
+            <h1>
+                {{title}}
+            </h1>
+            <script> 
+                $(function(){
+                  $("#includedContent").load("metric.html"); 
+                });
+            </script>
+        </head>
+        
+        <body>
+            <h3>
+                Campus-Wide Energy Usage in kiloWatts
+            </h3>
+            <canvas id="myChart" width="400" height="400"></canvas>
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+            <script>
+
+                var yValues = [{% for item in values %}
+                "{{item}}",
+                    {% endfor %}];
+                var xValues = [{% for item in times %}
+                "{{item}}",
+                    {% endfor %}];
+
+                const ctx = document.getElementById('myChart');
+                const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            label: 'Average Demand (kW)',
+                            data: yValues,
+                            backgroundColor: ['rgba(54, 162, 235, 0.2)'], // circle color
+                            borderColor: ['rgba(54, 162, 235, 1)'], // line color
+                            borderWidth: 1
+                        }]
+                    }// ,
+                    // options: {
+                    //     scales: {
+                    //         y: {
+                    //             beginAtZero: true
+                    //         }
+                    //     }
+                    // }
+                });
+            </script>
+            <div id="includedContent"></div>
+        </body>
+    </div>
+
+    <style>
+        .metric {
+           font-family: "IBM Plex Sans", sans-serif;
+           text-align: center;
+        }
+        .metric .value {
+           font-size: 48px;
+           line-height: 1.6;
+        }
+        .metric .label {
+           letter-spacing: 2px;
+           font-size: 14px;
+           text-transform: uppercase;
+        }
+        .Row {
+            display: table;
+            width: 100%; /*Optional*/
+            table-layout: fixed; /*Optional*/
+            border-spacing: 10px; /*Optional*/
+        }
+        .Column {
+            display: table-cell;
+        }
+    </style>
+    <div class="Row">
+        <div class="Column">
+            <div class="metric">
+                <div class="value">+1.3%</div>
+                <div class="label">Past Day</div>
+            </div>
+        </div>
+        <div class="Column">
+            <div class="metric">
+                <div class="value">+0.9%</div>
+                <div class="label">Past Week</div>
+            </div>
+        </div>
+        <div class="Column">
+            <div class="metric">
+                <div class="value">-0.9%</div>
+                <div class="label">Past Month</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
