@@ -28,6 +28,13 @@
                 "{{item}}",
                     {% endfor %}];
 
+                var y_pred = [{% for item in values_predicted %}
+                "{{item}}",
+                    {% endfor %}];
+                var x_pred = [{% for item in times_future %}
+                "{{item}}",
+                    {% endfor %}];
+
                 const ctx = document.getElementById('myChart');
                 const myChart = new Chart(ctx, {
                     type: 'line',
@@ -36,6 +43,27 @@
                         datasets: [{
                             label: 'Average Demand (kW)',
                             data: yValues,
+                            backgroundColor: ['rgba(54, 162, 235, 0.2)'], // circle color
+                            borderColor: ['rgba(54, 162, 235, 1)'], // line color
+                            borderWidth: 1
+                        }]
+                    }// ,
+                    // options: {
+                    //     scales: {
+                    //         y: {
+                    //             beginAtZero: true
+                    //         }
+                    //     }
+                    // }
+                });
+                const ctx2 = document.getElementById('myChart');
+                const myChart = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                        labels: x_pred,
+                        datasets: [{
+                            label: 'Average Demand (kW)',
+                            data: y_pred,
                             backgroundColor: ['rgba(54, 162, 235, 0.2)'], // circle color
                             borderColor: ['rgba(54, 162, 235, 1)'], // line color
                             borderWidth: 1
@@ -81,13 +109,13 @@
     <div class="Row">
         <div class="Column">
             <div class="metric">
-                <div class="value">{{day_diff}}%</div>
+                <div class="value">+1.3%</div>
                 <div class="label">Past Day</div>
             </div>
         </div>
         <div class="Column">
             <div class="metric">
-                <div class="value">{{week_diff}}%</div>
+                <div class="value">+0.9%</div>
                 <div class="label">Past Week</div>
             </div>
         </div>
