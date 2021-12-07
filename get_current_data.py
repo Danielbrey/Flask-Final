@@ -83,7 +83,7 @@ def get_metrics_data():
 
 def get_todays_data(location = None):
   curr_time = datetime.now()
-  print(curr_time)
+  #print(curr_time)
   #yesterday = curr_time - timedelta(days = 1)
   # Metric for past day
   if(location):

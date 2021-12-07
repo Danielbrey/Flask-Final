@@ -6,10 +6,10 @@ from datetime import datetime, timedelta
 
 NUM_VALS_PER_DAY = 145
 
-def predict_today(energy):
-  print(energy)
-  data = load_data(energy)
-  data = prepare_data(data)
+def predict_today(data):
+  print(data)
+  #data = load_data(energy)
+  #data = prepare_data(data)
 
   train_X = data[['Minute', 'Hour', 'Day', 'Month', 'Year', 'Weekday']]
   train_y = data['Power']

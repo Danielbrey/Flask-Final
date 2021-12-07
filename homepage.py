@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from get_current_data import get_todays_data, get_url, get_week_data
+from ml_models import load_data, prepare_data
 #from multipage import MultiPage
 from pages import average_demand_past, bihall_past, curr_data, week_data #, bihall_curr_data, day_average_demand, real_time, bihall # import your pages here
 import pandas as pd
@@ -9,11 +10,7 @@ import io
 
 total_energy = get_todays_data('all')
 
-curr_time = datetime.now()
-#yesterday = curr_time - timedelta(days = 1)
-url = get_url(curr_time.day, curr_time.month, curr_time.year, 'all')
-data = requests.get(url).content
-ML_energy= pd.read_csv(io.StringIO(data.decode('utf-8')), skiprows=1)
+
 #print(ML_energy)
 #ML_energy = get_todays_data('all')
 #print(total_energy)
@@ -29,6 +26,18 @@ datetimes_apply = datetimes_split.apply(pd.Series)
 #datetimes_year = datetimes_apply.iloc[:,0]
 datetimes_time = datetimes_apply.iloc[:,1]
 total_energy["Time"] = datetimes_time 
+
+
+
+#Get data for ML
+curr_time = datetime.now()
+#yesterday = curr_time - timedelta(days = 1)
+url = get_url(curr_time.day, curr_time.month, curr_time.year, 'all')
+data = requests.get(url).content
+ML_energy= pd.read_csv(io.StringIO(data.decode('utf-8')), skiprows=1)
+ML_energy = load_data(ML_energy)
+ML_energy = prepare_data(ML_energy)
+
 
 #print('tot')
 #print(total_energy)
