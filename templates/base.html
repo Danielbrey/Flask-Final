@@ -48,7 +48,7 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a href="battell_current_data" class="w3-bar-item w3-button">Battell</a>
       <a href="laforce_and_ross_dining_current_data" class="w3-bar-item w3-button">LaForce / Ross Dining</a>
       <a href="ridgeline_current_data" class="w3-bar-item w3-button">Ridgeline</a>
-      <a href="townhouse_center_data" class="w3-bar-item w3-button">Townhouse Center</a>
+      <a href="townhouse_center_current_data" class="w3-bar-item w3-button">Townhouse Center</a>
       <a href="townhouse_north_current_data" class="w3-bar-item w3-button">Townhouse North</a>
       <a href="townhouse_south_current_data" class="w3-bar-item w3-button">Townhouse South</a>
       <a href="voter_current_data" class="w3-bar-item w3-button">Voter</a>
@@ -63,6 +63,45 @@ body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
       <a href="atwater_dining_current_data" class="w3-bar-item w3-button">Atwater Dining</a>
       <a href="natatorium_current_data" class="w3-bar-item w3-button">Natatorium</a>
       <a href="kenyon_current_data" class="w3-bar-item w3-button">Kenyon</a>
+    </div>
+    <a href="campus_week_data" class="w3-bar-item w3-button">Campus Week</a>
+    <a onclick="myAccFuncB()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Academic Buildings Week <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAccB" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="axinn_week_data" class="w3-bar-item w3-button">Axinn</a>
+      <a href="bihall_week_data" class="w3-bar-item w3-button">Bicentennial Hall</a>
+      <a href="mahaney_arts_center_week_data" class="w3-bar-item w3-button">Mahaney Arts Center</a>
+      <a href="davis_week_data" class="w3-bar-item w3-button">Davis Family Library</a>
+      <a href="munroe_week_data" class="w3-bar-item w3-button">Munroe</a>
+      <a href="75_shannon_street_week_data" class="w3-bar-item w3-button">75 Shannon Street</a>
+    </div>
+    <a onclick="myAccFuncB2()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Residential Buildings Week <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAccB2" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="atwater_a_week_data" class="w3-bar-item w3-button">Atwater A</a>
+      <a href="atwater_b_week_data" class="w3-bar-item w3-button">Atwater B</a>
+      <a href="battell_week_data" class="w3-bar-item w3-button">Battell</a>
+      <a href="laforce_and_ross_dining_week_data" class="w3-bar-item w3-button">LaForce / Ross Dining</a>
+      <a href="ridgeline_week_data" class="w3-bar-item w3-button">Ridgeline</a>
+      <a href="townhouse_center_week_data" class="w3-bar-item w3-button">Townhouse Center</a>
+      <a href="townhouse_north_week_data" class="w3-bar-item w3-button">Townhouse North</a>
+      <a href="townhouse_south_week_data" class="w3-bar-item w3-button">Townhouse South</a>
+      <a href="voter_week_data" class="w3-bar-item w3-button">Voter</a>
+    </div>
+    <a onclick="myAccFuncB3()" href="javascript:void(0)" class="w3-button w3-block w3-light-grey w3-left-align" id="myBtn2">
+      Other Buildings Week<i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAccB3" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <!-- <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a> -->
+      <a href="porter_week_data" class="w3-bar-item w3-button">Porter Hospital</a>
+      <a href="virtue_field_house_week_data" class="w3-bar-item w3-button">Virtue Field House</a>
+      <a href="atwater_dining_week_data" class="w3-bar-item w3-button">Atwater Dining</a>
+      <a href="natatorium_week_data" class="w3-bar-item w3-button">Natatorium</a>
+      <a href="kenyon_week_data" class="w3-bar-item w3-button">Kenyon</a>
     </div>
   </div>
 </nav>
@@ -106,6 +145,41 @@ function myAccFunc3() {
   }
 }
 
+function myAccFuncB() {
+  var x = document.getElementById("demoAccB");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function myAccFuncB2() {
+  var x = document.getElementById("demoAccB2");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function myAccFuncB3() {
+  var x = document.getElementById("demoAccB3");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+
+function myAccFuncA() {
+  var x = document.getElementById("demoAccA");
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
 
 // Open and close sidebar
 function button_open() {

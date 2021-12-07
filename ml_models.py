@@ -12,12 +12,12 @@ from sklearn.metrics import r2_score, mean_squared_error
 
 
 #Gets current data for all of campus
-def load_data():
+def load_data(all_data):
 
-  curr_date = datetime.now().date()
+  #curr_date = datetime.now().date()
 
 
-  all_data = load_day_data(curr_date.day, curr_date.month, curr_date.year, "all")
+  #all_data = load_day_data(curr_date.day, curr_date.month, curr_date.year, "all")
   all_data.columns = ['Datetime', 'Location', 'Power']
   split = all_data['Datetime'].str.split('T').apply(pd.Series)
   dates = split.iloc[:,0]

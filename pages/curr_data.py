@@ -6,8 +6,9 @@ from datetime import datetime, timedelta
 
 NUM_VALS_PER_DAY = 145
 
-def predict_today():
-  data = load_data()
+def predict_today(energy):
+  print(energy)
+  data = load_data(energy)
   data = prepare_data(data)
 
   train_X = data[['Minute', 'Hour', 'Day', 'Month', 'Year', 'Weekday']]
@@ -31,10 +32,12 @@ def predict_today():
   return (rf_pred_y, next_day['Datetime'].values)
 
 #Gets current data for all of campus
-def app(total_energy, location):
+def app(total_energy, ml_energy, location):
   num_append = NUM_VALS_PER_DAY - len(total_energy["power"].values)
   append_list = [0] * num_append
-  y_predicted, times = predict_today()
+  print('ml2')
+  print(ml_energy)
+  y_predicted, times = predict_today(ml_energy)
   print("X Pred, length: {}".format(len(times)))
   print(times)
   print("Y Pred, length: {}".format(len(y_predicted)))

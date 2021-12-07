@@ -1,10 +1,21 @@
 from flask import Flask, render_template
-from get_current_data import get_todays_data, get_week_data
+from get_current_data import get_todays_data, get_url, get_week_data
 #from multipage import MultiPage
-from pages import average_demand_past, bihall_past, curr_data #, bihall_curr_data, day_average_demand, real_time, bihall # import your pages here
+from pages import average_demand_past, bihall_past, curr_data, week_data #, bihall_curr_data, day_average_demand, real_time, bihall # import your pages here
 import pandas as pd
+from datetime import datetime, timedelta
+import requests
+import io
 
 total_energy = get_todays_data('all')
+
+curr_time = datetime.now()
+#yesterday = curr_time - timedelta(days = 1)
+url = get_url(curr_time.day, curr_time.month, curr_time.year, 'all')
+data = requests.get(url).content
+ML_energy= pd.read_csv(io.StringIO(data.decode('utf-8')), skiprows=1)
+#print(ML_energy)
+#ML_energy = get_todays_data('all')
 #print(total_energy)
 total_energy.columns = ['datetime', 'location', 'power']
 
@@ -19,13 +30,17 @@ datetimes_apply = datetimes_split.apply(pd.Series)
 datetimes_time = datetimes_apply.iloc[:,1]
 total_energy["Time"] = datetimes_time 
 
+#print('tot')
+#print(total_energy)
+#print('ml')
+#print(ML_energy)
 #print(total_energy)
 
 #NOW FOR WEEK BELOW
-total_energy_week = get_week_data('all')
+
 #print(total_energy)
 #print(total_energy_week)
-total_energy_week.columns = ['datetime', 'location', 'power']
+
 
 #datetimes_as_strings = total_energy_week['datetime']
 
@@ -43,6 +58,8 @@ total_energy_week.columns = ['datetime', 'location', 'power']
 #print(total_energy_week[total_energy_week['location'] == 'campus'])
 #print('type')
 #print(type(total_energy_week['datetime']))
+total_energy_week = get_week_data('all')
+total_energy_week.columns = ['datetime', 'location', 'power']
 total_energy_week["datetime"] = pd.to_datetime(total_energy_week["datetime"])
 
 
@@ -133,7 +150,7 @@ def current_building_data(building):
    building_space = building.replace('_', ' ')
    building_transfer = buildingDict[building_space]
    building_energy = total_energy[total_energy['location'] == building_transfer]
-   return curr_data.app(building_energy, building_space)
+   return curr_data.app(building_energy, ML_energy.copy(), building_space)
 
 
 @app.route('/<building>_week_data')
@@ -142,8 +159,7 @@ def current_building_data2(building):
    building_space = building.replace('_', ' ')
    building_transfer = buildingDict[building_space]
    building_energy = total_energy_week[total_energy_week['location'] == building_transfer]
-   
-   return curr_data.app(building_energy, building_space)
+   return week_data.app(building_energy, building_space)
 
 
 
